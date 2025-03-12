@@ -1,3 +1,10 @@
+# sem8-labs2-3-4
+## How to run
+1. `docker build -f system-runtime.Dockerfile --tag system-runtime .`
+2. `docker build -f system-sdk.Dockerfile --tag system-sdk .`
+3. `docker build -f build.Dockerfile --tag build .`
+4. Then refer to latter `How to run` section
+
 # panpipe-backend
 Backend part of project Panpipe
 

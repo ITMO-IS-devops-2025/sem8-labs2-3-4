@@ -1,14 +1,9 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /src
+FROM system-runtime AS final
 
-COPY src/Panpipe/*.csproj ./Panpipe/
-RUN dotnet restore ./Panpipe/
-
-COPY src/ ./
-RUN dotnet publish -c Release -o /app ./Panpipe/
-
-
-FROM mcr.microsoft.com/dotnet/aspnet:8.0  AS final
 WORKDIR /app
+
 COPY --from=build /app ./
+
+USER app
+
 ENTRYPOINT [ "dotnet", "Panpipe.dll" ]

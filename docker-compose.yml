@@ -1,16 +1,15 @@
 services:
   web:
-    image: ${CONTAINER_REGISTRY:-ghcr.io}/${IMAGE_NAME:-panpipe-team/backend-web-api}:latest
-    build: 
-      context: .
-      target: final
+    build: .
+    environment:
+      - ASPNETCORE_HTTP_PORTS=8080
     depends_on:
       db:
         condition: service_healthy
       db-identity:
         condition: service_healthy
     ports:
-      - ${WEB_API_PORT:-8080}:8080
+      - 8080:8080
   
   db:
     image: postgres:latest
